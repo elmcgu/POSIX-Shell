@@ -9,7 +9,13 @@ def main():
         # Wait for user input
         
         command = input()
-        print(f"{command}: command not found")
+        
+        if command.lower() == "exit 0":
+            break
+
+        else:
+            print(f"{command}: command not found")
+
 
 
 if __name__ == "__main__":
