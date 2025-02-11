@@ -1,5 +1,6 @@
 import sys
 
+builtins =["type", "echo", "exit"]
 
 def main():
     while True:
@@ -10,7 +11,10 @@ def main():
         command = input().lower()
         argv = command.split()
         
-        if command == "exit 0":
+        if not command:
+            continue
+
+        elif command == "exit 0":
             break
 
         elif argv[0] == "echo":
@@ -21,14 +25,13 @@ def main():
             print(final_output.rstrip())
         
         elif argv[0] == "type":
-            if argv[1] == "echo":
-                print(f"{argv[1]} is a shell builtin")
-            elif argv[1] == "exit":
-                print(f"{argv[1]} is a shell builtin")
-            elif argv[1] == "type":
-                print(f"{argv[1]} is a shell builtin")
-            else:
-                print(f"{argv[1]}: not found")
+            try:
+                if argv[1] in builtins:
+                    print(f"{argv[1]} is a shell builtin")
+                else:
+                    print(f"{argv[1]}: not found")
+            except (IndexError, ValueError):
+                print("Please pass valid argument to type command!") 
 
 
         else:
