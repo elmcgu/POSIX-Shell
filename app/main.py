@@ -1,5 +1,6 @@
 import sys
 import os
+import subprocess
 
 builtins =["type", "echo", "exit"]
 
@@ -12,6 +13,14 @@ def find_exec(command):
             break
     else:
         print(f"{command}: not found")
+
+def run_exec(args):
+    try:
+        subprocess.run(args)
+    except FileNotFoundError:
+        print(f"{args[0]}: command not found")
+    except subprocess.CalledProcessError as e:
+        print(f"Error: {e}")
 
 
 def main():
@@ -35,15 +44,15 @@ def main():
             print(final_output.rstrip())
         
         elif argv[0] == "type":
-            if argv[1] in builtins and len(argv) == 2:
+            if len(argv) != 2:
+                print("Enter one argument for type command")
+            elif argv[1] in builtins:
                 print(f"{argv[1]} is a shell builtin")
-            elif len(argv) == 2:
-                find_exec(argv[1])
             else:
-                print("Enter 1 argument for type command")
+                find_exec(argv[1])
 
         else:
-            print(f"{command}: command not found")
+            run_exec(argv)
 
 if __name__ == "__main__":
     main()
