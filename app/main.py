@@ -17,12 +17,10 @@ def find_exec(command):
 def main():
     while True:
         sys.stdout.write("$ ")
-
         # Wait for user input
-        
         command = input().lower()
         argv = command.split()
-        
+
         if not command:
             continue
 
@@ -44,11 +42,8 @@ def main():
             else:
                 print("Enter 1 argument for type command")
 
-
         else:
             print(f"{command}: command not found")
-
-
 
 if __name__ == "__main__":
     main()
