@@ -27,7 +27,7 @@ def main():
     while True:
         sys.stdout.write("$ ")
         # Wait for user input
-        command = input().lower()
+        command = input()
         argv = command.split()
 
         if not command:
