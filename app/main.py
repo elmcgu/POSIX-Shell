@@ -50,6 +50,10 @@ def main():
                 print(f"{argv[1]} is a shell builtin")
             else:
                 find_exec(argv[1])
+        
+        elif argv[0] == "pwd":
+            cwd = os.getcwd()
+            print(cwd)
 
         else:
             run_exec(argv)
