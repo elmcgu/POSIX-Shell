@@ -2,7 +2,7 @@ import sys
 import os
 import subprocess
 
-builtins =["type", "echo", "exit"]
+builtins =["type", "echo", "exit", "pwd"]
 
 def find_exec(command):
     paths = os.getenv("PATH", "").split(os.pathsep)
